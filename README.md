@@ -93,5 +93,17 @@ Sementara itu, key pada DashMap dijamin unik sehingga kita tidak perlu memikirka
 Ya, kita masih butuh DashMap karena Singleton saja belum memastikan thread safety dan juga lebih kompleks untuk diimplementasikan.
 
 #### Reflection Publisher-2
+### 1. Pada MVC, tidak ada `Service` dan `Repository`, Model mencakup data storage dan business logic. Mengapa kita harus memisahkan `Service` dengan `Repository` dari sebuah Model?
+Agar kita mengikuti prinsip SoC (Separation of Concerns), dimana kita memecah sistem yang kompleks menjadi lebih simpel. Hal ini dilakukan agar kode lebih modular, maintainable, dan scalable karena kita dapat fokus pada suatu masalah kecil yang terisolasi saja daripada harus menyelesaikan masalah yang menyangkut hal lain.
+
+Dalam kasus ini, daripada model yang mencakup data storage dan business logic, kita memecahnya sehingga `Repository` bertanggungjawab untuk data storage dan `Service` bertanggungjawab untuk business logic.
+
+### 2. Apa yang terjadi jika kita hanya memakai Model? Bagaimana interaksi dari tiap model (Program, Subscriber, dan Notification) mempengaruhi code complexity masing-masing?
+Seperti yang sudah disebutkan sebelumnya, jika kita hanya memakai Model, maka akan lebih sulit untuk memelihara kode karena setiap Model terikat satu sama lain. Jika salah satu model berubah, bisa saja timbul masalah pada Model lain. Hal ini akan menambahkan kompleksitas dalam tiap Model dan juga dalam debugging.
+
+### 3. Sudahkan kamu mengeksplor Postman? Jelaskan bagaimana Postman membantu dalam mengetes pekerjaanmu, dan sebutkan fitur yang menurutmu menarik atau sangat berguna bagi proyekmu nanti.
+Sudah. Postman membantu dalam API testing karena memungkinkan kita untuk mengirimkan HTTP request, melihat response, dan mengautomasi test tanpa membutuhkan suatu frontend.
+
+Fitur yang mungkin akan berguna bagi proyek nantinya adalah kemampuan Postman untuk mengirim request bukan hanya bisa HTTP saja, tetapi bisa GraphQL, gRPC, WebSocket, Socket.IO, dan MQTT. Saya belum belajar tentang request-request lain tersebut. Namun, kemungkinan saja akan saya pakai di masa depan.
 
 #### Reflection Publisher-3
