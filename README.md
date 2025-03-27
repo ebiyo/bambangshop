@@ -107,3 +107,11 @@ Sudah. Postman membantu dalam API testing karena memungkinkan kita untuk mengiri
 Fitur yang mungkin akan berguna bagi proyek nantinya adalah kemampuan Postman untuk mengirim request bukan hanya bisa HTTP saja, tetapi bisa GraphQL, gRPC, WebSocket, Socket.IO, dan MQTT. Saya belum belajar tentang request-request lain tersebut. Namun, kemungkinan saja akan saya pakai di masa depan.
 
 #### Reflection Publisher-3
+### 1. Observer Pattern ada dua variasi, Push model dan Pull model. Apa yang digunakan pada tutorial ini?
+Variasi yang digunakan adalah Push model, dimana NotificationService mengirimkan update kepada subscriber ketika sebuah produk dibuat, dihapus, atau dipromosikan.
+
+### 2. Apa kelebihan dan kekurangan dari Observer Pattern lain selain yang digunakan di tutorial ini?
+Tutorial ini menggunakan Push model. Jika kita menggunakan Pull model, subscriber akan request update secara berkala dibanding langsung menerimanya ketika ada notifikasi. Hal ini dapat memungkinkan pengguna untuk mengontrol kapan mereka akan mendapatkan notifikasi dan mengurangi notifikasi yang tidak perlu. Namun, load pada server akan besar jika ada banyak subscriber yang me-request notifikasi secara bersamaan, bahkan ketika tidak ada notifikasi. Hal ini membuat Pull model tidak efisien untuk notifikasi real-time yang harus diterima user secepatnya.
+
+### 3. Jelaskan apa yang terjadi pada program bila kita tidak menggunakan multi-threading pada proses notifikasi.
+Tanpa multi-threading, jika ada suatu proses notifikasi yang belum selesai, maka notifikasi lain tidak dapat diproses sebelum notifikasi tersebut selesai diproses. Hal ini akan memperlambat proses pengiriman notifikasi serta membuat server terasa lambat dan tidak responsif jika ada notifikasi yang harus dikirimkan ke banyak subscriber.
