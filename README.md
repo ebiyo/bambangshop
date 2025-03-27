@@ -77,6 +77,20 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+### 1. Apakah butuh interface (trait) pada BambangShop atau satu struct saja cukup?
+Untuk sekarang, struct Subscriber menampung 2 hal, yaitu `url` dan `nama` yang tidak bereaksi pada event atau update, sehingga dapat disebutkan bahwa Subscriber sekarang hanyalah sebuah data container yang bekerja secara pasif.
+
+SubscriberRepository saat ini hanya memiliki fungsi `add`, `list_all`, dan `delete`, yang merupakan hal yang dapat dilakukan kepada sebuah data container (bisa dimasukkan, diambil, dan didelete).
+
+Jadi, satu struct saja cukup untuk memenuhi kebutuhan. Namun, jika ingin melakukan hal yang lebih kompleks seperti bereaksi pada event atau update, dapat memberitahu banyak tipe observer lain, atau mendukung tipe-tipe subscriber lain, maka trait perlu diimplementasikan.
+
+### 2. `id` pada `Program` dan `url` di Subscriber diharapkan unik. apakah Vec (list) cukup atau harus memakai DashMap (map/dict) seperti yang digunakan sekarang?
+Vec atau list bekerja seperti list biasanya. Jika ingin mencari apakah suatu elemen unik atau tidak, Vec perlu memeriksa tiap elemen di list sehingga memastikan elemen tidak unik sangatlah tidak efisien.
+
+Sementara itu, key pada DashMap dijamin unik sehingga kita tidak perlu memikirkan apakah `id` unik atau tidak. Jadi, kita perlu menggunakan DashMap untuk kasus ini.
+
+### 3. Ketika programming di Rust, kita dipaksa banyak halangan constraint agar membuat program yang thread-safe. Apakah kita masih butuh DashMap atau bisakah kita hanya implement Singleton pattern saja?
+Ya, kita masih butuh DashMap karena Singleton saja belum memastikan thread safety dan juga lebih kompleks untuk diimplementasikan.
 
 #### Reflection Publisher-2
 
